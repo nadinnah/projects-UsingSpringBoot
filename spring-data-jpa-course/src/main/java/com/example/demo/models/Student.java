@@ -1,9 +1,16 @@
 package com.example.demo.models;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
+
+import java.util.List;
 
 import static javax.persistence.GenerationType.*;
 
+@Setter
+@Getter
 @Entity(name= "Student")
 @Table(
         name= "Student",
@@ -71,37 +78,6 @@ public class Student {
         //This constructor is for Hibernate, not for you.
     }
 
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     @Override
     public String toString() {
         return "Student{" +
@@ -111,4 +87,8 @@ public class Student {
                 ", email='" + email + '\'' +
                 '}';
     }
+
+    @ManyToMany(mappedBy = "students")
+    private List<Course> courses;
+
 }

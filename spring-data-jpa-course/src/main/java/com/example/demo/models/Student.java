@@ -2,9 +2,11 @@ package com.example.demo.models;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static javax.persistence.GenerationType.*;
@@ -21,6 +23,7 @@ import static javax.persistence.GenerationType.*;
                 )
         }
 )
+@Component
 public class Student {
 
     @Id
@@ -89,6 +92,7 @@ public class Student {
     }
 
     @ManyToMany(mappedBy = "students")
-    private List<Course> courses;
+    private List<Course> courses= new ArrayList<>();
+
 
 }

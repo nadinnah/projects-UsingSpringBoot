@@ -2,14 +2,17 @@ package com.example.demo.models;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
 @Setter
 @Entity(name= "Course")
 @Table(name="Course")
+@Component
 public class Course {
 
     @Id
@@ -51,5 +54,9 @@ public class Course {
             joinColumns= @JoinColumn(name="course_id"),
             inverseJoinColumns = @JoinColumn(name="student_id")
     )
-    private List<Student> students;
+    private List<Student> students= new ArrayList<>();
+
+    public void addStudent(Student student){
+
+    }
 }

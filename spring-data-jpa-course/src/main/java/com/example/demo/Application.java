@@ -15,16 +15,16 @@ public class Application {
 
        ApplicationContext context= SpringApplication.run(Application.class, args);
 
-       Student student1= context.getBean(Student.class);
+        //Student student1= context.getBean(Student.class);
 
     }
 
-//    //to have code running after application startup
-//    @Bean
-//    CommandLineRunner commandLineRunner(StudentRepository studentRepository){
-//        return args->{
-//            Student nad= new Student("Nadin", 23,"nadinahmedmohamed@gmail.com");
-//            studentRepository.save(nad);
-//        };
-//    }
+    //to have code running after application startup
+    @Bean
+    CommandLineRunner commandLineRunner(StudentRepository studentRepository){
+        return args->{
+            Student nad= new Student("Nadin", 23,"nadinahmedmohamed@gmail.com");
+            studentRepository.save(nad);
+        };
+    }
 }

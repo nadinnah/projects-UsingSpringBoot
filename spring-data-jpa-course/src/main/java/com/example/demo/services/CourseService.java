@@ -7,6 +7,7 @@ import com.example.demo.repositories.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,6 +19,19 @@ public class CourseService {
 
     @Autowired
     StudentRepository studentRepo;
+
+    public Course createCourse(Course course){
+        return courseRepo.save(course);
+    }
+
+    public Course getCourse(String id){
+      return courseRepo.findById(id).orElseThrow(()->new EntityNotFoundException("Course not found"));
+    }
+
+    public void removeCourse(String id){
+        Course course= getCourse(id);
+        courseRepo.delete(course);
+    }
 
     public List<Course> fetchCourses(){
         return courseRepo.findAll();

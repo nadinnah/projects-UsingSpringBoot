@@ -24,12 +24,12 @@ public class CourseService {
         return courseRepo.save(course);
     }
 
-    public Course getCourse(String id){
+    public Course getCourseById(String id){
       return courseRepo.findById(id).orElseThrow(()->new EntityNotFoundException("Course not found"));
     }
 
-    public void removeCourse(String id){
-        Course course= getCourse(id);
+    public void removeCourseById(String id){
+        Course course= getCourseById(id);
         courseRepo.delete(course);
     }
 

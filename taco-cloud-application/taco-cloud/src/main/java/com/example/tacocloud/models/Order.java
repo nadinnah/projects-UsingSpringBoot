@@ -1,12 +1,15 @@
 package com.example.tacocloud.models;
 
+import jakarta.persistence.ManyToMany;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 import org.hibernate.validator.constraints.CreditCardNumber;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 @Data
@@ -39,4 +42,11 @@ public class Order {
 
     @Digits(integer=3, fraction = 0, message = "Invalid CVV")
     private String ccCVV;
+
+    @ManyToMany(targetEntity=Taco.class)
+    private List<Taco> tacos = new ArrayList<>();
+
+    public void addDesign(Taco design) {
+        this.tacos.add(design);
+    }
 }

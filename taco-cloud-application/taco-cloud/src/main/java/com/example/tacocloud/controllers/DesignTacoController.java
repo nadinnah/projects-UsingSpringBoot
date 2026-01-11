@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-@Slf4j
 @Controller
 @RequestMapping("/design")
 @SessionAttributes("order")
@@ -88,7 +87,6 @@ public class DesignTacoController {
         if(errors.hasErrors()){
             return "design";
         }
-        log.info("processing design: " + design);
         Taco saved= designRepo.save(design);
         order.addDesign(saved);
         return "redirect:/orders/current";

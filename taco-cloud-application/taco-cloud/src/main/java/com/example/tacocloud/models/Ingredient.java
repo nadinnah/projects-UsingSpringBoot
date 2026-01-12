@@ -8,8 +8,8 @@ import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 @Data //tells Lombok to generate all of missing methods as well as a constructor that accepts all final properties as arguments.
+@NoArgsConstructor(access= AccessLevel.PROTECTED, force = true)
 @RequiredArgsConstructor
-@NoArgsConstructor(access= AccessLevel.PRIVATE, force = true)
 @Entity
 public class Ingredient {
 

@@ -97,12 +97,12 @@ public class SecurityConfig {
         http.authorizeHttpRequests(auth->auth
                         .requestMatchers("/design", "/orders/**")
                         .hasRole("USER")
-                        .requestMatchers("/", "/**").permitAll())
+                        .requestMatchers("/", "/**", "/api/**").permitAll())
                 .formLogin(form->form
                         .loginPage("/login")
                         .defaultSuccessUrl("/design", true))
                 .csrf(csrf -> csrf
-                        .ignoringRequestMatchers("/h2-console/**")    // disable CSRF for H2 console
+                        .ignoringRequestMatchers("/h2-console/**", "/api/**")    // disable CSRF for H2 console
                 ) // csrf= An attacker tricks a logged-in user’s browser into sending a fake request.
                 .headers(headers -> headers
                         .frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin)    // allow frames for H2 console

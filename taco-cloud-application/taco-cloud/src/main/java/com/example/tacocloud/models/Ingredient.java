@@ -18,6 +18,7 @@ public class Ingredient {
     @Id
     private final String id; //final variable cant be reassigned once it's been initialized
     private final String name;
+
     @Enumerated(EnumType.STRING)
     private final Type type;
 

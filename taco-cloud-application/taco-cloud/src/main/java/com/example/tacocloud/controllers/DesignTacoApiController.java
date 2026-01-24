@@ -1,9 +1,11 @@
 package com.example.tacocloud.controllers;
 
+import com.example.tacocloud.DTOs.TacoRequestDto;
 import com.example.tacocloud.configurationPropertyHolders.OrderProps;
 import com.example.tacocloud.models.Taco;
 import com.example.tacocloud.repositories.OrderRepository;
 import com.example.tacocloud.repositories.TacoRepository;
+import com.example.tacocloud.services.TacoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -19,12 +21,14 @@ import java.util.Optional;
 @RequestMapping(path="/api/design", produces = "application/json")
 public class DesignTacoApiController{
 
+    TacoService tacoService;
     TacoRepository tacoRepo;
     OrderProps orderProps;
 
-    DesignTacoApiController(TacoRepository tacoRepo, OrderProps orderProps){
+    DesignTacoApiController(TacoRepository tacoRepo, OrderProps orderProps, TacoService tacoService){
         this.tacoRepo= tacoRepo;
         this.orderProps=orderProps;
+        this.tacoService=tacoService;
     }
 
     @GetMapping("/recent")
@@ -41,4 +45,54 @@ public class DesignTacoApiController{
         }
         return new ResponseEntity<>((HttpHeaders) null, HttpStatus.NOT_FOUND);
     }
+
+    @PostMapping(consumes = "application/json")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Taco postTaco(@RequestBody TacoRequestDto tacoRequestDto) {
+        return tacoService.createTaco(tacoRequestDto);
+    }
+    //Thymeleaf does NOT cross the wire because it runs on the server and produces HTML, not JSON
+    //The browser never sees your Java objects or entities — it only sees already-rendered HTML
+    //Anything that becomes JSON and goes to/from Angular/Postman is crossing the wire
+
+    //An Entity:
+    //Is a database object
+    //Annotated with @Entity
+    //Designed for JPA/Hibernate, not APIs
+
+    //entities should NOT cross the wire
+    //If you send this directly to the client:
+
+    //You expose database structure
+
+    //You risk:
+    //Lazy-loading errors
+    //Infinite JSON loops
+    //Breaking the frontend if DB changes
+
+    //You tightly couple:
+    //Frontend ↔ Database
+    //That’s bad architecture.
+
+    //DTO = Data Transfer Object
+    //Think of it as:
+    //“A clean package of data meant ONLY for communication”
+
+    //A DTO:
+    //Has no JPA annotations
+    //Has only the fields you want to expose
+    //Matches JSON shape, not database shape
+    //DTOs exist only to cross the wire safely.
+
+    //Controller:
+    //Talks HTTP
+    //Talks JSON
+    //Talks DTOs
+
+    //Repository:
+    //Talks database
+    //Talks Entities
+
+    //Service: (middle layer)
+    //Converts DTO ⇄ Entity
 }

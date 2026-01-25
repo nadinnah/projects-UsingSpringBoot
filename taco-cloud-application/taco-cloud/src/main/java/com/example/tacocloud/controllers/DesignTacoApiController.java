@@ -2,6 +2,7 @@ package com.example.tacocloud.controllers;
 
 import com.example.tacocloud.DTOs.TacoRequestDto;
 import com.example.tacocloud.configurationPropertyHolders.OrderProps;
+import com.example.tacocloud.models.Order;
 import com.example.tacocloud.models.Taco;
 import com.example.tacocloud.repositories.OrderRepository;
 import com.example.tacocloud.repositories.TacoRepository;
@@ -24,11 +25,12 @@ public class DesignTacoApiController{
     TacoService tacoService;
     TacoRepository tacoRepo;
     OrderProps orderProps;
-
-    DesignTacoApiController(TacoRepository tacoRepo, OrderProps orderProps, TacoService tacoService){
+    OrderRepository orderRepo;
+    DesignTacoApiController(TacoRepository tacoRepo, OrderProps orderProps, TacoService tacoService, OrderRepository orderRepo){
         this.tacoRepo= tacoRepo;
         this.orderProps=orderProps;
         this.tacoService=tacoService;
+        this.orderRepo=orderRepo;
     }
 
     @GetMapping("/recent")
@@ -50,6 +52,11 @@ public class DesignTacoApiController{
     @ResponseStatus(HttpStatus.CREATED)
     public Taco postTaco(@RequestBody TacoRequestDto tacoRequestDto) {
         return tacoService.createTaco(tacoRequestDto);
+    }
+
+    @PutMapping("/{orderId}")
+    public Order putOrder(@RequestBody Order order){
+        return orderRepo.save(order);
     }
     //Thymeleaf does NOT cross the wire because it runs on the server and produces HTML, not JSON
     //The browser never sees your Java objects or entities — it only sees already-rendered HTML

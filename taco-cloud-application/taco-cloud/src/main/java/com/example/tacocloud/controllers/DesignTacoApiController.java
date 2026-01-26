@@ -8,6 +8,7 @@ import com.example.tacocloud.repositories.OrderRepository;
 import com.example.tacocloud.repositories.TacoRepository;
 import com.example.tacocloud.services.TacoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpHeaders;
@@ -54,10 +55,7 @@ public class DesignTacoApiController{
         return tacoService.createTaco(tacoRequestDto);
     }
 
-    @PutMapping("/{orderId}")
-    public Order putOrder(@RequestBody Order order){
-        return orderRepo.save(order);
-    }
+
     //Thymeleaf does NOT cross the wire because it runs on the server and produces HTML, not JSON
     //The browser never sees your Java objects or entities — it only sees already-rendered HTML
     //Anything that becomes JSON and goes to/from Angular/Postman is crossing the wire

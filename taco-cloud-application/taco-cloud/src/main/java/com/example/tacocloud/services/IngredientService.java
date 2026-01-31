@@ -1,17 +1,25 @@
 package com.example.tacocloud.services;
 
 import com.example.tacocloud.models.Ingredient;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
 import java.util.Map;
-
+@Slf4j
 @Service
 public class IngredientService {
+    //IMPORTANT:
+    //RestTemplate is only useful when your app must talk to another app over HTTP.
+    //If there is no “other app”, RestTemplate has no purpose.
 
     //This is how Spring talks HTTP as a client
+    //you must KNOW the URL
+    //if the API changes its paths → your client breaks
+    //you are tightly coupled to the server structure
 
     private RestTemplate rest;
     //Your app needs data from a different service.
@@ -56,5 +64,36 @@ public class IngredientService {
     //RestTemplate call:
     //“Hey another program on the internet, send me some JSON.”
 
+    //option2:
+    // inspect the Date header from the response
+//    public Ingredient getIngredById(String ingredientId){
+//        ResponseEntity<Ingredient> responseEntity = rest.getForEntity("http://localhost:8080/ingredients/{id}", Ingredient.class, ingredientId);
+//        log.info("Fetched time: " + responseEntity.getHeaders().getDate());
+//
+//        return responseEntity.getBody();
+//    }
 
+    //put
+    public void updateIngredient(Ingredient ingredient) {
+        rest.put("http://localhost:8080/ingredients/{id}",
+                ingredient,
+                ingredient.getId());
+    }
+
+    //delete
+    public void deleteIngredient(Ingredient ingredient) {
+        rest.delete("http://localhost:8080/ingredients/{id}",
+                ingredient.getId());
+    }
+
+    public Ingredient createIngredient(Ingredient ingredient) {
+        return rest.postForObject("http://localhost:8080/ingredients",
+                ingredient,
+                Ingredient.class);
+    }
+
+    //when to use URI:
+    //search?q=cheese & tacos
+    //& BREAKS URL
+    //so, URI fixes it safely
 }

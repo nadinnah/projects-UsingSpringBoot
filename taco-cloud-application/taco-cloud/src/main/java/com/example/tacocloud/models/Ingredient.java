@@ -4,10 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
+import lombok.extern.slf4j.Slf4j;
 
 @Data //tells Lombok to generate all of missing methods as well as a constructor that accepts all final properties as arguments.
 @NoArgsConstructor(access= AccessLevel.PROTECTED, force = true)

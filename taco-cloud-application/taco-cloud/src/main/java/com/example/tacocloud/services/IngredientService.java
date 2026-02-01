@@ -3,6 +3,7 @@ package com.example.tacocloud.services;
 import com.example.tacocloud.models.Ingredient;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
+import org.springframework.hateoas.client.Traverson;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -21,6 +22,7 @@ public class IngredientService {
     //if the API changes its paths → your client breaks
     //you are tightly coupled to the server structure
 
+    private Traverson traverson;
     private RestTemplate rest;
     //Your app needs data from a different service.
     //Example:
@@ -96,4 +98,21 @@ public class IngredientService {
     //search?q=cheese & tacos
     //& BREAKS URL
     //so, URI fixes it safely
+
+//TRAVERSON & RESTTEMPLATE TOGETHER:
+
+// RestTemplate can write and delete resources, but doesn’t make it easy to navigate an API.
+// Traverson makes easy work of navigating a HATEOAS-enabled API
+// doesn’t do is offer any methods for writing to or deleting from those APIs
+//use together to make use of both advantages
+
+    private Ingredient addIngredient(Ingredient ingredient) {
+        String ingredientsUrl = traverson
+                .follow("ingredients")
+                .asLink()
+                .getHref();
+        return rest.postForObject(ingredientsUrl,
+                ingredient,
+                Ingredient.class);
+    }
 }

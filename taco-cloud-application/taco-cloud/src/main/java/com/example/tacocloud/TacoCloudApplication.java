@@ -1,5 +1,7 @@
 package com.example.tacocloud;
 
+import jakarta.jms.Destination;
+import org.apache.activemq.artemis.jms.client.ActiveMQQueue;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -24,6 +26,11 @@ public class TacoCloudApplication {
     @Bean
     public Traverson traverson(){
         return new Traverson(URI.create("http://localhost:8080/api"), MediaTypes.HAL_JSON);
+    }
+
+    @Bean
+    public Destination orderQueue() {
+        return new ActiveMQQueue("tacocloud.order.queue");
     }
 }
 

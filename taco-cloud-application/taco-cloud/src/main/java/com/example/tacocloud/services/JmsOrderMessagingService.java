@@ -40,7 +40,7 @@ public class JmsOrderMessagingService implements OrderMessagingService {
     //simpler way with lambda and destination in properties
     @Override
     public void sendOrder(Order order) {
-        jms.send(orderQueue,session -> session.createObjectMessage(order));
+        jms.convertAndSend(orderQueue, order);
     }
 
 

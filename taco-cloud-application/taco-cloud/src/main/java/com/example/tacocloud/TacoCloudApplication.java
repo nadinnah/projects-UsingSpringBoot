@@ -1,5 +1,12 @@
 package com.example.tacocloud;
 
+import org.jspecify.annotations.Nullable;
+import org.springframework.amqp.core.Message;
+import org.springframework.amqp.core.MessageProperties;
+import org.springframework.amqp.support.converter.MessageConversionException;
+import org.springframework.amqp.support.converter.MessageConverter;
+import org.springframework.amqp.support.converter.MessagingMessageConverter;
+import org.springframework.amqp.support.converter.SmartMessageConverter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -24,6 +31,11 @@ public class TacoCloudApplication {
     @Bean
     public Traverson traverson(){
         return new Traverson(URI.create("http://localhost:8080/api"), MediaTypes.HAL_JSON);
+    }
+
+    @Bean
+    public MessageConverter converter(){
+        return new MessagingMessageConverter();
     }
 }
 

@@ -1,5 +1,12 @@
 package com.example.tacocloud;
 
+import org.jspecify.annotations.Nullable;
+import org.springframework.amqp.core.Message;
+import org.springframework.amqp.core.MessageProperties;
+import org.springframework.amqp.support.converter.MessageConversionException;
+import org.springframework.amqp.support.converter.MessageConverter;
+import org.springframework.amqp.support.converter.MessagingMessageConverter;
+import org.springframework.amqp.support.converter.SmartMessageConverter;
 import com.example.tacocloud.models.Order;
 import jakarta.jms.Destination;
 import org.apache.activemq.artemis.jms.client.ActiveMQQueue;
@@ -34,6 +41,8 @@ public class TacoCloudApplication {
     }
 
     @Bean
+    public MessageConverter converter(){
+        return new MessagingMessageConverter();
     public Destination orderQueue() {
         return new ActiveMQQueue("tacocloud.order.queue");
     }

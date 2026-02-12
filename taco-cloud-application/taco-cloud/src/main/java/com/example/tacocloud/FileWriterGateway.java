@@ -7,5 +7,4 @@ import org.springframework.messaging.handler.annotation.Header;
 @MessagingGateway(defaultRequestChannel = "textInChannel")
 public interface FileWriterGateway {
     void writeToFile(@Header(FileHeaders.FILENAME) String filename, String data);
-
 }

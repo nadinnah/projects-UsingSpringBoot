@@ -1,5 +1,7 @@
 package com.example.tacocloudemailintegration.configurations;
 
+import com.example.tacocloudemailintegration.EmailToOrderTransformer;
+import com.example.tacocloudemailintegration.OrderSubmitMessageHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.integration.dsl.IntegrationFlow;

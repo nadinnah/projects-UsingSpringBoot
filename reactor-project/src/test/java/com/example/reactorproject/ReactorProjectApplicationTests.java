@@ -22,7 +22,13 @@ class ReactorProjectApplicationTests {
                 f -> System.out.println("Here's some fruit: " + f)
         );
 
-
+        StepVerifier.create(fruitFlux)
+                .expectNext("Apple")
+                .expectNext("Orange")
+                .expectNext("Grape")
+                .expectNext("Banana")
+                .expectNext("Strawberry")
+                .verifyComplete();
 
     }
 

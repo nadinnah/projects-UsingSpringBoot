@@ -2,12 +2,28 @@ package com.example.reactorproject;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import reactor.core.publisher.Flux;
+import reactor.test.StepVerifier;
 
 @SpringBootTest
 class ReactorProjectApplicationTests {
 
+//    @Test
+//    void contextLoads() {
+//    }
+
+    //creating flux from 5 string objects
     @Test
-    void contextLoads() {
+    public void createAFlux_just() {
+        Flux<String> fruitFlux = Flux
+                .just("Apple", "Orange", "Grape", "Banana", "Strawberry");
+
+        fruitFlux.subscribe(
+                f -> System.out.println("Here's some fruit: " + f)
+        );
+
+
+
     }
 
 }

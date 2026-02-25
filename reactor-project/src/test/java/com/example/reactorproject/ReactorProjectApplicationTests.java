@@ -5,6 +5,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import reactor.core.publisher.Flux;
 import reactor.test.StepVerifier;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @SpringBootTest
 class ReactorProjectApplicationTests {
 
@@ -37,6 +40,26 @@ class ReactorProjectApplicationTests {
         String[] fruits = new String[] {
                 "Apple", "Orange", "Grape", "Banana", "Strawberry" };
         Flux<String> fruitFlux = Flux.fromArray(fruits);
+        StepVerifier.create(fruitFlux)
+                .expectNext("Apple")
+                .expectNext("Orange")
+                .expectNext("Grape")
+                .expectNext("Banana")
+                .expectNext("Strawberry")
+                .verifyComplete();
+    }
+
+    @Test
+    public void createAFlux_fromIterable(){
+        List<String> fruitList= new ArrayList<>();
+        fruitList.add("Apple");
+        fruitList.add("Orange");
+        fruitList.add("Grape");
+        fruitList.add("Banana");
+        fruitList.add("Strawberry");
+
+        Flux<String> fruitFlux= Flux.fromIterable(fruitList);
+
         StepVerifier.create(fruitFlux)
                 .expectNext("Apple")
                 .expectNext("Orange")

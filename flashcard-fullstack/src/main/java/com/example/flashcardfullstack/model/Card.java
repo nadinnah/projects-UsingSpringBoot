@@ -7,7 +7,7 @@ import lombok.Data;
 
 @Data
 @Entity
-public class CardDetails {
+public class Card {
     @Id
     @GeneratedValue
     private Long id;

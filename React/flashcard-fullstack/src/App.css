@@ -1,5 +1,6 @@
 body{
     background-color: rgb(209, 234, 234);
+    justify-items: center;
 }
 
 .card{
@@ -8,13 +9,19 @@ body{
     align-items: center;
     position: relative;
     border-radius: .25rem;
-    box-shadow: 0 0 5px 2px rgba(0,0,0,3);
+    box-shadow: 0 0 5px 2px rgba(0,0,0,.3);
     background-color: white; 
     transform-style: preserve-3d;
     height: 150px;
     width: 150px;
     transition: 150ms;
-    transform: rotateY(var(--rotate-y,0));
+    transform: rotateY(var(--rotate-y,0))
+    translateY(var(--translate-y,0));
+}
+
+.card:hover{
+    --translate-y:-2px;
+    box-shadow: 0 0 5px 2px rgba(0,0,0,.5);
 }
 
 .card.flip{

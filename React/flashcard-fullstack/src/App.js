@@ -1,32 +1,48 @@
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css"
 import FlashcardList from "./component/FlashcardList";
 import "./App.css"
-import Navbar from './layout/Navbar';
-import React, {useState} from "react";
+import React, {useState, useEffect}from "react";
+import axios from "axios";
 function App() {
 
-  const[flashcards, setFlashcards]= useState(SAMPLE_FLASHCARDS)
+  const [flashcards, setFlashcards]= useState([])
+  const [newCard,setNewCard]= useState()
+
+
+  useEffect(()=>{
+    loadFlashcards()
+  },[])
+
+  const loadFlashcards= async()=>{
+    const result=await axios.get("http://localhost:8080/card")
+    setFlashcards(result.data)
+
+  }
+
+  const addFlashcard=(frontText, backText)=>{
+    const result= axios.post
+  }
 
   return (
     <div className="App">
-      <Navbar/>
+      <button className="btn btn-outline-success" onClick={addFlashcard} >Add Card</button>
       <FlashcardList flashcards={flashcards}/>
 
     </div>
   );
 }
 
-const SAMPLE_FLASHCARDS=[
-  {
-    id:1,
-    frontText: "Hallo",
-    backText:"Hello"
-  },
-  {
-    id:2,
-    frontText: "Frau",
-    backText:"Woman"
-  }
-]
+// const SAMPLE_FLASHCARDS=[
+//   {
+//     id:1,
+//     frontText: "Hallo",
+//     backText:"Hello"
+//   },
+//   {
+//     id:2,
+//     frontText: "Frau",
+//     backText:"Woman"
+//   }
+// ]
 
 export default App;

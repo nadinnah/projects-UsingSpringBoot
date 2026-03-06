@@ -20,6 +20,7 @@ public class CardController {
     }
 
     @GetMapping
+    @CrossOrigin("http://localhost:3000/")
     List<Card> getAllCards(){
         return cardRepo.findAll();
     }

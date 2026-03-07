@@ -1,8 +1,6 @@
 package com.example.flashcardfullstack.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
@@ -14,4 +12,9 @@ public class Card {
 
     private String frontText;
     private String backText;
+
+    @ManyToOne
+    @JoinColumn(name = "card_list_id")
+    private CardList cardList;
 }
+

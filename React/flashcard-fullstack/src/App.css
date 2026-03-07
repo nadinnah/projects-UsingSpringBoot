@@ -1,6 +1,7 @@
 body{
     background-color: rgb(209, 234, 234);
     justify-items: center;
+    align-items: center;
 }
 
 .card{
@@ -14,6 +15,7 @@ body{
     transform-style: preserve-3d;
     height: 150px;
     width: 150px;
+    margin:20px ;
     transition: 150ms;
     transform: rotateY(var(--rotate-y,0))
     translateY(var(--translate-y,0));
@@ -39,3 +41,4 @@ body{
 .card .back {
     transform: rotateY(180deg);
 }
+

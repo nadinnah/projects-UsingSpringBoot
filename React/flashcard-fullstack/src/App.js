@@ -25,9 +25,10 @@ function App() {
 
   return (
     <div className="App">
-      <button className="btn btn-outline-success" onClick={addFlashcard} >Add Card</button>
+      <DeckList decks={FlashcardList}/>
       <FlashcardList flashcards={flashcards}/>
-
+      <button className="btn btn-outline-success" onClick={addFlashcard} >Add New Deck</button>
+      
     </div>
   );
 }

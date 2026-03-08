@@ -9,7 +9,7 @@ const Deck = ({deck}) => {
             <div className="deck2 ">
             </div>
             <div className="deck3">
-            {deck.deckName}
+                {deck.deckName}
             </div>
         </div>
     );

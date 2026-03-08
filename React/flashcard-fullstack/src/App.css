@@ -41,6 +41,9 @@ body{
 }
 
 .deck3{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     grid-column: 4/3;
     grid-row: 1/4;  
 }

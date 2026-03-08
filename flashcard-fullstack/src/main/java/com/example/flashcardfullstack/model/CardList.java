@@ -7,11 +7,16 @@ import javax.naming.spi.NamingManager;
 import java.util.ArrayList;
 import java.util.HashSet;
 
+import static jakarta.persistence.GenerationType.SEQUENCE;
+
 @Data
 @Entity
 public class CardList {
     @Id
-    @GeneratedValue
+    @GeneratedValue(
+            strategy = SEQUENCE,
+            generator = "cardlist_sequence"
+    )
     private Long id;
 //    private HashSet<Card> cards;
 
@@ -21,6 +26,4 @@ public class CardList {
     @JoinColumn(name = "deck_id")
     private Deck deck;
 
-    @OneToMany(mappedBy = "cardList")
-    private ArrayList<Card> cards;
 }

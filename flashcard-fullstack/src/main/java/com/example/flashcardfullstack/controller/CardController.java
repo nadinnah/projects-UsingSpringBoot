@@ -1,6 +1,7 @@
 package com.example.flashcardfullstack.controller;
 
 import com.example.flashcardfullstack.model.Card;
+import com.example.flashcardfullstack.model.Deck;
 import com.example.flashcardfullstack.repository.CardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +19,7 @@ public class CardController {
     Card addCard(@RequestBody Card newCard){
         return cardRepo.save(newCard);
     }
+
 
     @GetMapping
     @CrossOrigin("http://localhost:3000/")

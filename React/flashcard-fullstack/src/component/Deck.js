@@ -1,18 +1,16 @@
-import React from 'react';
+import React, {useState} from 'react';
 
-const Deck = ({flashcardLists}) => {
+const Deck = ({deck}) => {
+    //const [flip, setFlip]= useState(false)
     return (
-        <div className='grid'>
-        <div className="deck">
-        {/* {flashcardLists.card_list_category}  */}
-        </div>
-        <div className="deck2 ">
-        {/* {flashcardLists.card_list_category}  */}
-        </div>
-        <div className="deck3">
-        {/* {flashcardLists.card_list_category}  */}
-        deck name here
-        </div>
+        <div className='stack'>
+            <div className="deck">
+            </div>
+            <div className="deck2 ">
+            </div>
+            <div className="deck3">
+            {deck.deckName}
+            </div>
         </div>
     );
 }

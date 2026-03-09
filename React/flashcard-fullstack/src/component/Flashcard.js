@@ -10,6 +10,7 @@ const Flashcard = ({flashcard}) => {
             <div className='front'>
                 {flashcard.frontText}
             </div>
+            
             <div className='back'>
                 {flashcard.backText}
             </div>

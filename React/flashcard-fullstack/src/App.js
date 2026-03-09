@@ -4,7 +4,6 @@ import "./App.css"
 import React, {useState, useEffect}from "react";
 import axios from "axios";
 
-
 function App() {
 
   // const [flashcards, setFlashcards]= useState([])
@@ -37,10 +36,16 @@ function App() {
 
   return (
     <div className="App">
-      <DeckList decks={decks} />
+    
+          <DeckList decks={decks} />
+  
+      
+      
       {/* <FlashcardList flashcards={flashcards}/> */}
       {/* <button className="btn btn-outline-success" onClick={addFlashcard} >Add New Deck</button>
        */}
+       
+            <button className="btn btn-light">Add New Deck</button>
     </div>
   );
 }

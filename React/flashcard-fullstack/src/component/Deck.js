@@ -8,7 +8,7 @@ const Deck = ({deck}) => {
             </div>
             <div className="deck2 ">
             </div>
-            <div className="deck3">
+            <div className="deck3 ">
                 {deck.deckName}
             </div>
         </div>

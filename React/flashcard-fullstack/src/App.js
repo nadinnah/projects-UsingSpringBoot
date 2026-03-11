@@ -3,7 +3,9 @@ import DeckList from "./component/DeckList";
 import "./App.css"
 import React, {useState, useEffect}from "react";
 import axios from "axios";
-
+import { Link } from 'react-router-dom';
+import OverlayModal from "./component/OverlayModal";
+import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
 
   // const [flashcards, setFlashcards]= useState([])
@@ -45,8 +47,10 @@ function App() {
       {/* <button className="btn btn-outline-success" onClick={addFlashcard} >Add New Deck</button>
        */}
        
-            <button className="btn btn-light">Add New Deck</button>
+            <Link className="btn btn-light" to="/add_deck">Add New Deck</Link>
+            
     </div>
+    
   );
 }
 

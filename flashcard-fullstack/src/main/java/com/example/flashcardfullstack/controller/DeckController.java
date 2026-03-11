@@ -27,6 +27,7 @@ public class DeckController {
     }
 
     @PostMapping("/add")
+    @CrossOrigin("http://localhost:3000/")
     Deck addDeck(@RequestBody Deck newDeck){
         return deckRepo.save(newDeck);
     }

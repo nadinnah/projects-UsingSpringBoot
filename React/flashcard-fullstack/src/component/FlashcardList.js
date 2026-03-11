@@ -9,10 +9,9 @@ const FlashcardList =({flashcards}) => {
     const[currentCardIndex,setCurrentCardIndex]= useState(0);
 
     const deckCards= flashcards.filter((flashcard) => {
-        console.log(flashcard.cardList.id===parseInt(deckId))
-        return flashcard.cardList.id===parseInt(deckId)}
+       return flashcard.cardList.id===parseInt(deckId)}
     )
-    console.log(deckCards)
+    
     
     if (deckCards.length === 0) {
     return <div>Loading cards...</div>

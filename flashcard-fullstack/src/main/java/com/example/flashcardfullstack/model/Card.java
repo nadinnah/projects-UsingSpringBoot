@@ -19,7 +19,7 @@ public class Card {
     private String backText;
 
     @ManyToOne
-    @JoinColumn(name = "card_list_id")
-    private CardList cardList;
+    @JoinColumn(name = "deck_id")
+    private Deck deck;
 }
 

@@ -5,11 +5,13 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Card from './Card';
 import AddDeck from './cards/AddDeck'
 import OverlayModal from './component/OverlayModal';
+import AddCard from './cards/AddCard';
 
 const router = createBrowserRouter([
   {path:"/",element:<App/>},
-  {path:"/cardpage/:deckId", element:<Card/>},
+  {path:"/:deckId", element:<Card/>},
   {path:"/add_deck", element:<AddDeck/>},
+  {path:"/:deckId/add_card", element:<AddCard/>},
   {path:"/overlay", element:<OverlayModal/>}
 ]);
 

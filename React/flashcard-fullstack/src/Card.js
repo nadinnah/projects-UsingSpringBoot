@@ -3,10 +3,11 @@ import FlashcardList from "./component/FlashcardList";
 import "./Card.css"
 import React, {useState, useEffect} from "react";
 import axios from "axios";
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 
 const Card = () => {
+    const {deckId}=useParams()
     const [flashcards, setFlashcards]= useState([])
 
     useEffect(()=>{
@@ -24,7 +25,7 @@ const Card = () => {
             <button className="btn btn-light">Go back</button> 
             </Link>
             <FlashcardList flashcards={flashcards}/>
-      
+            <Link className="btn btn-light" to={`/${deckId}/add_card`}>Add New Card</Link>
         </div>
     );
 }

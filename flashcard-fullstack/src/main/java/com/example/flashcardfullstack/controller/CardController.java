@@ -16,6 +16,7 @@ public class CardController {
     CardRepository cardRepo;
 
     @PostMapping("/add")
+    @CrossOrigin("http://localhost:3000/")
     Card addCard(@RequestBody Card newCard){
         return cardRepo.save(newCard);
     }

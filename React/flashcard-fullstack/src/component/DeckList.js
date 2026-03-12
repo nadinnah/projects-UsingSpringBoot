@@ -9,7 +9,7 @@ const DeckList = ({decks}) => {
        <div >
             {decks.map(deck=>{
                  
-                return <Link to={`/cardpage/${deck.id}`}><Deck deck={deck} key={deck.id}/></Link>
+                return <Link to={`/${deck.id}`}><Deck deck={deck} key={deck.id}/></Link>
             })}
         </div>
     );

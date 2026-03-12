@@ -9,7 +9,8 @@ const FlashcardList =({flashcards}) => {
     const[currentCardIndex,setCurrentCardIndex]= useState(0);
 
     const deckCards= flashcards.filter((flashcard) => {
-       return flashcard.cardList.id===parseInt(deckId)}
+        console.log(flashcard)
+       return flashcard.deck.id===parseInt(deckId)}
     )
     
     

@@ -29,7 +29,7 @@ const AddCard = () => {
     return (
         <div className='container'>
             <div className='row'>
-                <div className='col-md-6 offset-md-3 border rounded p-4 mt-2 shadow'>
+                <div className=' offset-md-3 border rounded p-4 mt-2 shadow'>
                     <h2 className='text-center m-4'>Add Card</h2>
                     <form onSubmit={(e)=>onAdd(e)}>
                     <div className='mb-3'>

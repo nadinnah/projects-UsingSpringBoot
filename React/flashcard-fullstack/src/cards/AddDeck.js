@@ -24,15 +24,19 @@ const AddDeck = () => {
     return (
         <div className='container'>
             <div className='row'>
-                <div className='col-md-6 offset-md-3 border rounded p-4 mt-2 shadow'>
+                <div className=' offset-md-3 border rounded p-4 mt-2 shadow'>
                     <h2 className='text-center m-4'>Add Deck</h2>
                     <form onSubmit={(e)=>onAdd(e)}>
                     <div className='mb-3'>
                         <label htmlFor='Name' className='form-label'> Deck Name:</label>
                         <input type={'text'} className='form-control' placeholder='Enter deck name' name='deckName' value={deckName} onChange={(e)=>onInputChange(e)}/>
                     </div>
-                    <button type='submit' className='btn btn-light'>Add</button>
-                    <Link to={"/"} className='btn btn-outline-danger mx-2'>cancel</Link>
+
+                    <div className='d-flex justify-content-center'>
+                        <button type='submit' className='btn btn-light'>Add</button>
+                        <Link to={"/"} className='btn btn-outline-danger ms-5'>cancel</Link>
+                    </div>
+                    
                     </form>
                 </div>
             </div>

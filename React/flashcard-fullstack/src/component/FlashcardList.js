@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import Flashcard from './Flashcard';
-import { useParams } from 'react-router-dom';
+import {Link, useParams } from 'react-router-dom';
 
 const FlashcardList =({flashcards}) => {
     //useParams() always returns string
     const {deckId}=useParams()
+
 
     const[currentCardIndex,setCurrentCardIndex]= useState(0);
 
@@ -29,11 +30,15 @@ const FlashcardList =({flashcards}) => {
 
 
     return (
-        <div >
+        <div>
             <Flashcard flashcard={deckCards[currentCardIndex]} key={deckCards[currentCardIndex].id}/>
-            <button onClick={nextCard}>
-                 Next
-            </button> 
+            
+            <div className='d-flex justify-content-center'>
+                <button className='btn btn-light ' onClick={nextCard}>
+                    Next
+                </button> 
+                <Link className="btn btn-light ms-5" to={`/${deckId}/add_card`}>Add New Card</Link>
+            </div>
             
             {/* {flashcards.map(flashcard=>{
                 return <Flashcard flashcard={flashcard} key={flashcard.id}/>

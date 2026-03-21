@@ -21,11 +21,10 @@ const Card = () => {
 
     return (
         <div>
-            <Link to={`/`}>
-            <button className="btn btn-light">Go back</button> 
-            </Link>
-            <FlashcardList flashcards={flashcards}/>
-            <Link className="btn btn-light" to={`/${deckId}/add_card`}>Add New Card</Link>
+            <Link to={`/`} className='d-flex justify-content-start'>
+                <button className="btn btn-light m-4">Go back</button> 
+            </Link> 
+            <FlashcardList flashcards={flashcards}/>    
         </div>
     );
 }
